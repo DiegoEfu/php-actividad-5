@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,9 @@ Route::get('/register', function(){
 });
 
 Route::post('/register', [RegisterController::class, 'register'])->name('register_post');
+
+Route::get('/login', [LoginController::class, 'show']);
+
+Route::post('/login', [LoginController::class, 'login'])->name('login_post');
+
+Route::get('/home', [HomeController::class, 'index']);

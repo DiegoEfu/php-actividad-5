@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
 class LoginRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,12 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'cedula'=>'required',
+            'password'=>'required'
         ];
+    }
+
+    public function getCredentials(){
+        return $this->only('cedula', 'password');
     }
 }
