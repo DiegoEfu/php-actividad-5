@@ -9,6 +9,7 @@
 <body>
     <form action="{{route('login_post')}}" method="post">
         @csrf
+        @include('layouts.partials.messages')
         <input type="text" name="cedula" id="cedula" placeholder="cedula">
         <input type="text" name="password" id="password" placeholder="clave">
         <input type="submit" value="Entrar">

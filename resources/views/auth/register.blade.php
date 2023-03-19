@@ -9,6 +9,7 @@
 <body>
     <form action="{{route('register_post')}}" method="POST">
         @csrf
+        @include('layouts.partials.messages')
         <input type="text" name="name">
         <input type="text" name="cedula" pattern="[VE][0-9]+">
         <input type="email" name="email">
