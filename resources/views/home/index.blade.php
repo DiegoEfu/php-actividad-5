@@ -7,6 +7,13 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>¡Bienvenido!</h1>
+    @auth
+        <h1>¡Bienvenido, {{auth()->user()->name}} ({{auth()->user()->cedula}})!</h1>
+        <a href="{{route('logout')}}">Cerrar Sesión</a>
+    @endauth
+
+    @guest
+        <h1>Debes iniciar sesión para ver el contenido.</h1>
+    @endguest
 </body>
 </html>

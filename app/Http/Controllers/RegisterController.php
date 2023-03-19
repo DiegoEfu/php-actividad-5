@@ -10,12 +10,14 @@ class RegisterController extends Controller
 {
     //
     public function show(){
+        if(Auth::check()){
+            return redirect('/home');
+        }
         return view('auth.register');
     }
 
     public function register(RegisterRequest $request){
         $user = User::create($request -> validated());
         auth()->login($user);
-        # return redirect('success', 'Usuario creado satisfactoriamente.');
     }
 }
