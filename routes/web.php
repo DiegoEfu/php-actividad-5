@@ -6,6 +6,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ProveedoraController;
+use App\Http\Controllers\ProduccionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +38,5 @@ Route::get('/home', [HomeController::class, 'index']);
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::resource('productos', ProductoController::class);
+Route::resource('proveedoras', ProveedoraController::class);
+Route::resource('produccions', ProduccionController::class);
