@@ -21,16 +21,13 @@ use App\Http\Controllers\ProduccionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LoginController::class, 'show']);
 
 Route::get('/register', function(){
     return view('auth.register');
 });
 Route::post('/register', [RegisterController::class, 'register'])->name('register_post');
 
-Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'login'])->name('login_post');
 
 Route::get('/home', [HomeController::class, 'index']);
