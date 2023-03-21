@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $producto->name ?? "{{ __('Show') Producto" }}
+    {{ $insumo->name ?? "{{ __('Show') Insumo" }}
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Producto</span>
+                            <span class="card-title">{{ __('Show') }} Insumo</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('productos.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('insumos.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
@@ -22,15 +22,11 @@
                         
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $producto->nombre }}
+                            {{ $insumo->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Codigo Barra:</strong>
-                            {{ $producto->codigo_barra }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Stock:</strong>
-                            {{ $producto->stock }}
+                            <strong>Precio:</strong>
+                            {{ $insumo->precio }}
                         </div>
 
                     </div>

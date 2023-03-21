@@ -1,15 +1,10 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-
+        
         <div class="form-group">
             {{ Form::label('nombre') }}
             {{ Form::text('nombre', $producto->nombre, ['class' => 'form-control' . ($errors->has('nombre') ? ' is-invalid' : ''), 'placeholder' => 'Nombre']) }}
             {!! $errors->first('nombre', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('precio_actual') }}
-            {{ Form::text('precio_actual', $producto->precio_actual, ['class' => 'form-control' . ($errors->has('precio_actual') ? ' is-invalid' : ''), 'placeholder' => 'Precio Actual']) }}
-            {!! $errors->first('precio_actual', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('codigo_barra') }}
@@ -17,7 +12,7 @@
             {!! $errors->first('codigo_barra', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            Stock Inicial
+            {{ Form::label('stock') }}
             {{ Form::text('stock', $producto->stock, ['class' => 'form-control' . ($errors->has('stock') ? ' is-invalid' : ''), 'placeholder' => 'Stock']) }}
             {!! $errors->first('stock', '<div class="invalid-feedback">:message</div>') !!}
         </div>
