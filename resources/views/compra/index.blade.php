@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Compra') }}
+                                {{ __('Compras') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('compras.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Registrar Nueva') }}
                                 </a>
                               </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Cantidad</th>
 										<th>Referencia</th>
 										<th>Estado</th>
@@ -49,12 +49,12 @@
                                     @foreach ($compras as $compra)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $compra->cantidad }}</td>
 											<td>{{ $compra->referencia }}</td>
-											<td>{{ $compra->estado }}</td>
-											<td>{{ $compra->insumo_id }}</td>
-											<td>{{ $compra->proveedora_id }}</td>
+											<td>@if($compra['estado'] == 'A') Abierta @else Cerrada @endif</td>
+											<td>{{ $compra->insumo->nombre }}</td>
+											<td>{{ $compra->proveedora->razon_social }}</td>
 
                                             <td>
                                                 <form action="{{ route('compras.destroy',$compra->id) }}" method="POST">

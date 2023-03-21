@@ -25,7 +25,6 @@ class Compra extends Model
     static $rules = [
 		'cantidad' => 'required|min:0',
 		'referencia' => 'required|unique:compras,referencia',
-		'estado' => 'required',
 		'insumo_id' => 'required',
 		'proveedora_id' => 'required',
     ];
@@ -37,6 +36,14 @@ class Compra extends Model
      *
      * @var array
      */
-    protected $fillable = ['cantidad','referencia','estado','insumo_id','proveedora_id'];
+    protected $fillable = ['cantidad','referencia','insumo_id','proveedora_id'];
+
+    public function insumo(){
+        return $this->hasOne('App\Insumo', 'id', 'insumo_id');
+    }
+
+    public function proveedora(){
+        return $this->hasOne('App\Proveedora', 'id', 'proveedora_id');
+    }
 
 }
