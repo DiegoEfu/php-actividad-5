@@ -21,10 +21,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Proveedora extends Model
 {
-    
+
     static $rules = [
-		'identificacion' => 'required',
-		'razon_social' => 'required',
+		'identificacion' => 'required|unique:proveedoras,identificacion',
+		'razon_social' => 'required|unique:proveedoras,razon_social',
 		'direccion' => 'required',
     ];
 
@@ -37,6 +37,8 @@ class Proveedora extends Model
      */
     protected $fillable = ['identificacion','razon_social','telefono','correo_electronico','direccion'];
 
-
+    public function compras(){
+        return $this->hasMany('App\Compra', 'proveedora_id', 'id');
+    }
 
 }

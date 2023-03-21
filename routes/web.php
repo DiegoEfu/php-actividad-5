@@ -9,7 +9,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedoraController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\InsumoController;
-
+use App\Http\Controllers\CompraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +38,4 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::resource('productos', ProductoController::class);
 Route::resource('proveedoras', ProveedoraController::class);
 Route::resource('insumos', InsumoController::class);
+Route::resource('compras', CompraController::class);

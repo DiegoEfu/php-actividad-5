@@ -33,4 +33,8 @@ class Insumo extends Model
      */
     protected $fillable = ['nombre','precio'];
 
+    public function compras(){
+        return $this->hasMany('App\Insumo', 'insumo_id', 'id');
+    }
+
 }
