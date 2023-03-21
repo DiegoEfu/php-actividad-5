@@ -14,9 +14,15 @@ return new class extends Migration
         Schema::create('productos', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->string('nombre');
-            $table->decimal('precio_actual', 10, 2);
             $table->string('codigo_barra');
             $table->decimal('stock', 10, 2);
+            $table->timestamps();
+        });
+
+        Schema::create('insumos', function(Blueprint $table){
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->decimal('precio', 10, 2);
             $table->timestamps();
         });
     }

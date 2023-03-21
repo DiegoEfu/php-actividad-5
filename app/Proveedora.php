@@ -21,10 +21,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Proveedora extends Model
 {
-    
+
     static $rules = [
-		'identificacion' => 'required',
-		'razon_social' => 'required',
+		'identificacion' => 'required|unique:proveedora,identificacion',
+		'razon_social' => 'required|unique:proveedora,razon_social',
 		'direccion' => 'required',
     ];
 
