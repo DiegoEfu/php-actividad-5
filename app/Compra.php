@@ -23,8 +23,8 @@ class Compra extends Model
 {
 
     static $rules = [
-		'cantidad' => 'required',
-		'referencia' => 'required',
+		'cantidad' => 'required|min:0',
+		'referencia' => 'required|unique:compras,referencia',
 		'estado' => 'required',
 		'insumo_id' => 'required',
 		'proveedora_id' => 'required',

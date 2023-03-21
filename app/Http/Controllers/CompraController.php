@@ -35,10 +35,10 @@ class CompraController extends Controller
     {
         $compra = new Compra();
 
-        $proveedoras = Proveedora::pluck('razon_social');
-        $insumo = Insumo::pluck('nombre');
+        $proveedoras = Proveedora::all();
+        $insumos = Insumo::all();
 
-        return view('compra.create', compact('compra', 'proveedoras', 'insumo'));
+        return view('compra.create', compact('compra', 'proveedoras', 'insumos'));
     }
 
     /**
@@ -80,7 +80,10 @@ class CompraController extends Controller
     {
         $compra = Compra::find($id);
 
-        return view('compra.edit', compact('compra'));
+        $proveedoras = Proveedora::all();
+        $insumos = Insumo::all();
+
+        return view('compra.edit', compact('compra','proveedoras', 'insumos'));
     }
 
     /**

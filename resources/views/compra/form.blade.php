@@ -2,12 +2,20 @@
     <div class="box-body">
         <div class="form-group">
             Proveedora
-            {{ Form::select('proveedora_id', $proveedoras, ['class' => 'form-control' . ($errors->has('proveedora_id') ? ' is-invalid' : ''), 'placeholder' => 'Proveedora']) }}
+            <select name="proveedora_id" id="insumo_id" class="form-select">
+                @foreach ($proveedoras as $proveedora)
+                    <option value="{{$proveedora['id']}}" @if($proveedora['id']==$compra['proveedora_id']) selected @endif>{{$proveedora['razon_social']}}</option>
+                @endforeach
+            </select>
             {!! $errors->first('proveedora_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             Insumo a Comprar
-            {{ Form::select('insumo_id', $insumos, ['class' => 'form-control' . ($errors->has('insumo_id') ? ' is-invalid' : ''), 'placeholder' => 'Insumo']) }}
+            <select name="insumo_id" id="insumo_id" class="form-select">
+                @foreach ($insumos as $insumo)
+                    <option value="{{$insumo['id']}}" @if($insumo['id']==$compra['insumo_id']) selected @endif>{{$insumo['nombre']}}</option>
+                @endforeach
+            </select>
             {!! $errors->first('insumo_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
