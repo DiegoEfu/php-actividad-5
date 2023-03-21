@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Producto
+    Registrar Nuevo Producto
 @endsection
 
 @section('content')

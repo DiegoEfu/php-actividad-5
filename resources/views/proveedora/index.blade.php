@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('proveedoras.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Registrar Nueva Proveedora') }}
                                 </a>
                               </div>
                         </div>
@@ -35,12 +35,12 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
-										<th>Identificacion</th>
-										<th>Razon Social</th>
-										<th>Telefono</th>
-										<th>Correo Electronico</th>
-										<th>Direccion</th>
+
+										<th>Identificación</th>
+										<th>Razón Social</th>
+										<th>Teléfono</th>
+										<th>Correo Eléctronico</th>
+										<th>Dirección</th>
 
                                         <th></th>
                                     </tr>
@@ -49,7 +49,7 @@
                                     @foreach ($proveedoras as $proveedora)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $proveedora->identificacion }}</td>
 											<td>{{ $proveedora->razon_social }}</td>
 											<td>{{ $proveedora->telefono }}</td>

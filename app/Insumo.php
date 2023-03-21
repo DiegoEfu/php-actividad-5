@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Insumo extends Model
 {
-    
+
     static $rules = [
-		'nombre' => 'required',
+		'nombre' => 'required|unique:insumos,nombre',
 		'precio' => 'required',
     ];
 
@@ -32,7 +32,5 @@ class Insumo extends Model
      * @var array
      */
     protected $fillable = ['nombre','precio'];
-
-
 
 }

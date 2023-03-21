@@ -8,6 +8,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProveedoraController;
 use App\Http\Controllers\ProduccionController;
+use App\Http\Controllers\InsumoController;
 
 
 /*
@@ -36,4 +37,4 @@ Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::resource('productos', ProductoController::class);
 Route::resource('proveedoras', ProveedoraController::class);
-Route::resource('produccions', ProduccionController::class);
+Route::resource('insumos', InsumoController::class);

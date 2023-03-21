@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('produccions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Registrar Nueva') }}
                                 </a>
                               </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Cantidad</th>
 										<th>Producto Id</th>
 
@@ -46,7 +46,7 @@
                                     @foreach ($produccions as $produccion)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $produccion->cantidad }}</td>
 											<td>{{ $produccion->producto_id }}</td>
 
