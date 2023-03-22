@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('insumos_producto', function(Blueprint $table){
+            $table->bigIncrements('id');
+            $table->decimal('cantidad', 10, 2);
+            $table->string('referencia');
+            $table->decimal('cantidad', 10,2);
+            $table->foreignIdFor(Insumo::class);
+            $table->foreignIdFor(Producto::class);
+        });
     }
 
     /**

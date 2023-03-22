@@ -66,8 +66,13 @@ class CompraController extends Controller
     public function show($id)
     {
         $compra = Compra::find($id);
+        $compra->estado = 'C';
 
-        return view('compra.show', compact('compra'));
+        $compra->insumo->stock += $compra->cantidad;
+        $compra->save();
+
+        return redirect()->route('compras.index')
+            ->with('success', 'Compra cerrada con éxito.');
     }
 
     /**
