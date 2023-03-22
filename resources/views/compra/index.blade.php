@@ -58,8 +58,9 @@
 
                                             <td>
                                                 <form action="{{ route('compras.destroy',$compra->id) }}" method="POST">
-                                                    @if($compra->estado == 'A') <a class="btn btn-sm btn-primary " href="{{ route('compras.show',$compra->id) }}"><i class="fa fa-window-close"></i> {{ __('Cerrar') }}</a> @endif
+                                                    @if($compra->estado == 'A') <a class="btn btn-sm btn-primary " href="{{ route('compras.show',$compra->id) }}"><i class="fa fa-window-close"></i> {{ __('Cerrar') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('compras.edit',$compra->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    @endif
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
