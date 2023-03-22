@@ -14,12 +14,12 @@
                             <span class="card-title">{{ __('Show') }} Proveedora</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('proveedoras.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('proveedoras.index') }}"> {{ __('Regresar') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Identificacion:</strong>
                             {{ $proveedora->identificacion }}

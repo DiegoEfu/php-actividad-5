@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Producto;
+use App\InsumoProducto;
 
 /**
  * Class Insumo
@@ -35,6 +37,10 @@ class Insumo extends Model
 
     public function compras(){
         return $this->hasMany('App\Insumo', 'insumo_id', 'id');
+    }
+
+    public function productos(){
+        return $this->belongsToMany(Producto::class)->withPivot('cantidad');
     }
 
 }

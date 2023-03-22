@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Insumo;
+use App\InsumosProducto;
 
 /**
  * Class Producto
@@ -34,4 +36,7 @@ class Producto extends Model
      */
     protected $fillable = ['nombre','codigo_barra'];
 
+    public function insumos(){
+        return $this->belongsToMany(Insumo::class, InsumosProducto::class)->withPivot('cantidad');
+    }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\ProveedoraController;
 use App\Http\Controllers\ProduccionController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\InsumosProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,4 @@ Route::resource('productos', ProductoController::class);
 Route::resource('proveedoras', ProveedoraController::class);
 Route::resource('insumos', InsumoController::class);
 Route::resource('compras', CompraController::class);
+Route::resource('insumos_producto', InsumosProductoController::class);
