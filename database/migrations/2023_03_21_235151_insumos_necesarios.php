@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Insumo;
+use App\Producto;
+
 return new class extends Migration
 {
     /**
@@ -13,8 +16,6 @@ return new class extends Migration
     {
         Schema::create('insumos_producto', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->decimal('cantidad', 10, 2);
-            $table->string('referencia');
             $table->decimal('cantidad', 10,2);
             $table->foreignIdFor(Insumo::class);
             $table->foreignIdFor(Producto::class);
