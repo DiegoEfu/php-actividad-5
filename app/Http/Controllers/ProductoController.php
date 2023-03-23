@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Producto;
 use Illuminate\Http\Request;
+use App\Insumo;
+use App\InsumosProducto;
 
 /**
  * Class ProductoController
@@ -32,7 +34,9 @@ class ProductoController extends Controller
     public function create()
     {
         $producto = new Producto();
-        return view('producto.create', compact('producto'));
+
+        $insumos = Insumo::all();
+        return view('producto.create', compact('producto','insumos'));
     }
 
     /**
@@ -46,6 +50,7 @@ class ProductoController extends Controller
         request()->validate(Producto::$rules);
 
         $producto = Producto::create($request->all());
+        $insumo = InsumosProducto::create(['insumo_id' => $request->insumo_id, 'cantidad' => $request->cantidad, 'producto_id' => $producto->id]);
 
         return redirect()->route('productos.index')
             ->with('success', 'Producto creado correctamente.');
@@ -91,7 +96,7 @@ class ProductoController extends Controller
         $producto->update($request->all());
 
         return redirect()->route('productos.index')
-            ->with('success', 'Producto updated successfully');
+            ->with('success', 'Producto editado correctamente.');
     }
 
     /**
@@ -104,6 +109,6 @@ class ProductoController extends Controller
         $producto = Producto::find($id)->delete();
 
         return redirect()->route('productos.index')
-            ->with('success', 'Producto deleted successfully');
+            ->with('success', 'Producto eliminado correctamente.');
     }
 }

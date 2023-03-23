@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  */
 class InsumosProducto extends Pivot
 {
-
+    public $timestamps = false;
     static $rules = [
 		'cantidad' => 'required|min:0.01',
 		'insumo_id' => 'required|unique:insumos_producto,insumo_id,producto_id',
