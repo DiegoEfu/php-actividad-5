@@ -40,7 +40,7 @@ class Insumo extends Model
     }
 
     public function productos(){
-        return $this->belongsToMany(Producto::class)->withPivot('cantidad');
+        return $this->belongsToMany(Producto::class)->withPivot('cantidad', 'id');
     }
 
 }

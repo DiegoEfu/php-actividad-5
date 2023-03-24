@@ -38,6 +38,7 @@
 
 										<th>Nombre</th>
 										<th>Precio</th>
+                                        <th>Stock</th>
 
                                         <th></th>
                                     </tr>
@@ -49,6 +50,7 @@
 
 											<td>{{ $insumo->nombre }}</td>
 											<td>{{ $insumo->precio }}</td>
+                                            <td>{{ $insumo->stock }}</td>
 
                                             <td>
                                                 <form action="{{ route('insumos.destroy',$insumo->id) }}" method="POST">

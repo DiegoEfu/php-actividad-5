@@ -21,8 +21,8 @@ class InsumosProducto extends Pivot
     public $timestamps = false;
     static $rules = [
 		'cantidad' => 'required|min:0.01',
-		'insumo_id' => 'required|unique:insumos_producto,insumo_id,producto_id',
-		'producto_id' => 'required|unique:insumos_producto,insumo_id,producto_id',
+		'insumo_id' => 'required',
+		'producto_id' => 'required',
     ];
 
     protected $perPage = 20;

@@ -39,8 +39,8 @@ class InsumosProductoController extends Controller
 
         $insumosProducto = InsumosProducto::create($request->all());
 
-        return redirect()->route('insumos-productos.index')
-            ->with('success', 'InsumosProducto created successfully.');
+        return redirect()->route('productos.show', $insumosProducto['producto_id'])
+            ->with('success', 'Añadido insumo necesario.');
     }
 
     /**
@@ -66,7 +66,10 @@ class InsumosProductoController extends Controller
     {
         $insumosProducto = InsumosProducto::find($id);
 
-        return view('insumos-producto.edit', compact('insumosProducto'));
+        $producto = Producto::find($insumosProducto->producto_id);
+        $insumos = Insumo::where('id',$insumosProducto->insumo_id)->get();
+
+        return view('insumos_producto.edit', compact('insumosProducto', 'producto', 'insumos'));
     }
 
     /**
@@ -82,8 +85,8 @@ class InsumosProductoController extends Controller
 
         $insumosProducto->update($request->all());
 
-        return redirect()->route('insumos-productos.index')
-            ->with('success', 'InsumosProducto updated successfully');
+        return redirect()->route('productos.show', $request->producto_id)
+            ->with('success', 'Insumo necesario actualizado correctamente.');
     }
 
     /**
@@ -93,9 +96,11 @@ class InsumosProductoController extends Controller
      */
     public function destroy($id)
     {
-        $insumosProducto = InsumosProducto::find($id)->delete();
+        $insumosProducto = InsumosProducto::find($id);
+        $idProducto = $insumosProducto->producto_id;
+        $insumosProducto->delete();
 
-        return redirect()->route('insumos-productos.index')
-            ->with('success', 'InsumosProducto deleted successfully');
+        return redirect()->route('productos.show', $idProducto)
+        ->with('success', 'Insumo necesario eliminado correctamente.');
     }
 }

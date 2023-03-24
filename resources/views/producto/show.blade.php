@@ -44,9 +44,17 @@
                                 <tr>
                                     <td>{{$insumo['nombre']}}</td>
                                     <td>{{$insumo['pivot']['cantidad']}}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">Editar</a>
-                                        <a href="#" class="btn btn-danger">Eliminar</a>
+                                    <td class="d-flex">
+                                        <a style="max-height: 45px;" href="{{ route('insumos_producto.edit',$insumo['pivot']['id']) }}" class="btn btn-primary">Editar</a>
+                                        @if($producto->insumos->count() > 1)
+                                        <form action="{{ route('insumos_producto.destroy',$insumo->pivot->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" style="max-height: 45px;">Eliminar</button>
+                                        </form>
+                                        @else
+                                            <button class="btn btn-danger" style="max-height: 45px;" disabled>Eliminar</button>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

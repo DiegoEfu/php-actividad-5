@@ -37,6 +37,6 @@ class Producto extends Model
     protected $fillable = ['nombre','codigo_barra'];
 
     public function insumos(){
-        return $this->belongsToMany(Insumo::class, InsumosProducto::class)->withPivot('cantidad');
+        return $this->belongsToMany(Insumo::class, InsumosProducto::class)->withPivot('cantidad', 'id');
     }
 }
