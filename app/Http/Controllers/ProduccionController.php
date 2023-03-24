@@ -99,8 +99,9 @@ class ProduccionController extends Controller
     public function edit($id)
     {
         $produccion = Produccion::find($id);
+        $productos = Producto::all();
 
-        return view('produccion.edit', compact('produccion'));
+        return view('produccion.edit', compact('produccion', 'productos'));
     }
 
     /**
@@ -114,10 +115,46 @@ class ProduccionController extends Controller
     {
         request()->validate(Produccion::$rules);
 
+        $insumos = $produccion->producto->insumos;
+        if(request()->validate(Produccion::$rules)){
+            foreach ($insumos as $insumo) {
+                $cantidad_p = (float)$produccion->cantidad;
+                $cantidad_i = $insumo->pivot->cantidad;
+
+                $insumo->stock += $cantidad_p*$cantidad_i;
+                $insumo->save();
+            }
+
+            foreach ($insumos as $insumo) {
+                $stock = $insumo->stock;
+                $cantidad_p = $request->cantidad;
+                $cantidad_i = $insumo->pivot->cantidad;
+                if($stock < $cantidad_p*$cantidad_i){
+                    $request->validate([
+                        'cantidad' => ['required', new InsumosInsuficientes],
+                    ]);
+                }
+            }
+
+            $produccion->producto->stock -= (float)$produccion->cantidad;
+            $produccion->producto->save();
+
+            foreach ($insumos as $insumo) {
+                $cantidad_p = (float)$request->cantidad;
+                $cantidad_i = $insumo->pivot->cantidad;
+
+                $insumo->stock -= $cantidad_p*$cantidad_i;
+                $insumo->save();
+            }
+        }
+
+        $produccion->producto->stock += (float)$request->cantidad;
+        $produccion->producto->save();
+
         $produccion->update($request->all());
 
         return redirect()->route('produccions.index')
-            ->with('success', 'Produccion updated successfully');
+            ->with('success', 'Producción actualizada correctamente');
     }
 
     /**
