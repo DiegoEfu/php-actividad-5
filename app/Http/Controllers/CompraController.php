@@ -31,6 +31,24 @@ class CompraController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $compras->perPage());
     }
 
+    public function pdf_abiertas()
+    {
+        $compras = Compra::where('estado', 'A')->get();
+        $i = 0;
+        $tipo = "ABIERTAS";
+
+        return view('compra.pdf', compact('compras', 'i','tipo'));
+    }
+
+    public function pdf_cerradas()
+    {
+        $compras = Compra::where('estado', 'C')->get();
+        $i = 0;
+        $tipo = "CERRADAS";
+
+        return view('compra.pdf', compact('compras', 'i','tipo'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
