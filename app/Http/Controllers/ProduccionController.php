@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Produccion;
 use App\Producto;
 use Illuminate\Http\Request;
@@ -22,7 +23,10 @@ class ProduccionController extends Controller
     {
         $produccions = Produccion::orderBy('id', 'desc')->paginate();
 
-        return view('produccion.index', compact('produccions'))
+        $data = DB::select('SELECT nombre,SUM(cantidad) AS cantidad FROM produccions INNER JOIN productos AS p ON producto_id = p.id GROUP BY nombre LIMIT 10');
+        $data = json_encode($data);
+
+        return view('produccion.index', compact('produccions','data'))
             ->with('i', (request()->input('page', 1) - 1) * $produccions->perPage());
     }
 

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <canvas class="m-3" id="grafica" style="max-height: 40vh; min-height: 40vh;"></canvas>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -71,4 +72,47 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            let canvas = document.getElementById('grafica').getContext('2d');
+            let datosGrafica = JSON.parse(`{{$data}}`.replaceAll('&quot;', '"'));
+            console.log(datosGrafica);
+
+            let datosInterpretados = {};
+
+            datosGrafica.forEach(element => {
+                datosInterpretados[element.nombre] = element.cantidad;
+            });
+
+            chart = new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    datasets: [
+                        {
+                            data: Object.values(datosInterpretados),
+                            backgroundColor: ['#00F',],
+                            indexAxis: 'y',
+                        }
+                    ],
+                    labels: Object.keys(datosInterpretados)
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Productos Más Producidos',
+                            position: 'top'
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
