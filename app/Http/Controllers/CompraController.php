@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+
 use App\Compra;
 use App\Insumo;
 use App\Proveedora;
@@ -22,7 +24,10 @@ class CompraController extends Controller
     {
         $compras = Compra::paginate();
 
-        return view('compra.index', compact('compras'))
+        $data = DB::select('SELECT nombre,SUM(cantidad) AS cantidad FROM compras INNER JOIN insumos AS p ON insumo_id = p.id GROUP BY nombre ORDER BY cantidad DESC LIMIT 10');
+        $data = json_encode($data);
+
+        return view('compra.index', compact('compras', 'data'))
             ->with('i', (request()->input('page', 1) - 1) * $compras->perPage());
     }
 

@@ -23,7 +23,7 @@ class ProduccionController extends Controller
     {
         $produccions = Produccion::orderBy('id', 'desc')->paginate();
 
-        $data = DB::select('SELECT nombre,SUM(cantidad) AS cantidad FROM produccions INNER JOIN productos AS p ON producto_id = p.id GROUP BY nombre LIMIT 10');
+        $data = DB::select('SELECT nombre,SUM(cantidad) AS cantidad FROM produccions INNER JOIN productos AS p ON producto_id = p.id GROUP BY nombre ORDER BY cantidad DESC LIMIT 10');
         $data = json_encode($data);
 
         return view('produccion.index', compact('produccions','data'))
