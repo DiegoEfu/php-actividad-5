@@ -37,7 +37,8 @@
                                         <th>No</th>
 
 										<th>Cantidad</th>
-										<th>Producto Id</th>
+										<th>Producto</th>
+                                        <td>Fecha</td>
 
                                         <th></th>
                                     </tr>
@@ -48,11 +49,11 @@
                                             <td>{{ ++$i }}</td>
 
 											<td>{{ $produccion->cantidad }}</td>
-											<td>{{ $produccion->producto_id }}</td>
+											<td>{{ $produccion->producto->nombre }}</td>
+                                            <td>{{ $produccion->created_at }}</td>
 
                                             <td>
                                                 <form action="{{ route('produccions.destroy',$produccion->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('produccions.show',$produccion->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('produccions.edit',$produccion->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')

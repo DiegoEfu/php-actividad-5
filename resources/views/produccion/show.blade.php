@@ -14,12 +14,12 @@
                             <span class="card-title">{{ __('Show') }} Produccion</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('produccions.index') }}"> {{ __('Regresar') }}</a>
+                            <a class="btn btn-primary" href="{{ route('produccions.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-
+                        
                         <div class="form-group">
                             <strong>Cantidad:</strong>
                             {{ $produccion->cantidad }}
