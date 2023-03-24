@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use PDF;
 
 use App\Compra;
 use App\Insumo;
@@ -37,7 +38,8 @@ class CompraController extends Controller
         $i = 0;
         $tipo = "ABIERTAS";
 
-        return view('compra.pdf', compact('compras', 'i','tipo'));
+        $pdf = PDF::loadView('compra.pdf', ['compras' => $compras, 'i' => $i, 'tipo' => $tipo]);
+        return $pdf->stream();
     }
 
     public function pdf_cerradas()
@@ -46,7 +48,8 @@ class CompraController extends Controller
         $i = 0;
         $tipo = "CERRADAS";
 
-        return view('compra.pdf', compact('compras', 'i','tipo'));
+        $pdf = PDF::loadView('compra.pdf', ['compras' => $compras, 'i' => $i, 'tipo' => $tipo]);
+        return $pdf->stream();
     }
 
     /**
