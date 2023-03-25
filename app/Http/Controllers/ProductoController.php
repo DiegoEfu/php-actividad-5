@@ -91,7 +91,7 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         if(!Auth::check() || (Auth::user()->cargo != 'ADMIN')){
-            return redirect('/login');
+            return redirect('/productos');
         }
         $producto = Producto::find($id)->delete();
 

@@ -16,13 +16,12 @@ use Illuminate\Http\Request;
  */
 class CompraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'GESTOR DE COMPRAS')){
+            return redirect('/login');
+        }
+
         $compras = Compra::paginate();
 
         $data = DB::select('SELECT nombre,SUM(cantidad) AS cantidad FROM compras INNER JOIN insumos AS p ON insumo_id = p.id GROUP BY nombre ORDER BY cantidad DESC LIMIT 10');
@@ -54,13 +53,11 @@ class CompraController extends Controller
         return $pdf->stream();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'GESTOR DE COMPRAS')){
+            return redirect('/login');
+        }
         $compra = new Compra();
 
         $proveedoras = Proveedora::all();
@@ -69,12 +66,6 @@ class CompraController extends Controller
         return view('compra.create', compact('compra', 'proveedoras', 'insumos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         request()->validate(Compra::$rules);
@@ -85,14 +76,11 @@ class CompraController extends Controller
             ->with('success', 'Compra created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'GESTOR DE COMPRAS')){
+            return redirect('/login');
+        }
         $compra = Compra::find($id);
         $compra->estado = 'C';
 
@@ -111,6 +99,9 @@ class CompraController extends Controller
      */
     public function edit($id)
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'GESTOR DE COMPRAS')){
+            return redirect('/login');
+        }
         $compra = Compra::find($id);
 
         $proveedoras = Proveedora::all();
@@ -119,13 +110,6 @@ class CompraController extends Controller
         return view('compra.edit', compact('compra','proveedoras', 'insumos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Compra $compra
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Compra $compra)
     {
         request()->validate(Compra::$rules);
@@ -136,13 +120,11 @@ class CompraController extends Controller
             ->with('success', 'Compra updated successfully');
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
     public function destroy($id)
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN')){
+            return redirect('/compras');
+        }
         $compra = Compra::find($id)->delete();
 
         return redirect()->route('compras.index')
