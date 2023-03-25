@@ -7,7 +7,7 @@
     <title>Iniciar Sesión</title>
 </head>
 <body>
-    <form action="{{route('login_post')}}" method="post">
+    <form action="{{route('login_post')}}" method="POST">
         @csrf
         @include('layouts.partials.messages')
         <input type="text" name="cedula" id="cedula" placeholder="cedula">

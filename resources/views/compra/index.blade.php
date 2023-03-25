@@ -21,10 +21,10 @@
                                 <a href="{{ route('compras.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Registrar Nueva') }}
                                 </a>
-                                <a href="{{ route('compras.pdf_abiertas') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                                <a target="_blank" href="{{ route('compras.pdf_abiertas') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
                                     {{ __('PDF Compras Abiertas') }}
                                 </a>
-                                <a href="{{ route('compras.pdf_cerradas') }}" class="btn btn-danger btn-sm float-right"  data-placement="left">
+                                <a target="_blank" href="{{ route('compras.pdf_cerradas') }}" class="btn btn-danger btn-sm float-right"  data-placement="left">
                                     {{ __('PDF Compras Cerradas') }}
                                 </a>
                               </div>

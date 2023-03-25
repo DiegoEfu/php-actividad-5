@@ -36,9 +36,10 @@ class CompraController extends Controller
     {
         $compras = Compra::where('estado', 'A')->get();
         $i = 0;
+        $total = 0;
         $tipo = "ABIERTAS";
 
-        $pdf = PDF::loadView('compra.pdf', ['compras' => $compras, 'i' => $i, 'tipo' => $tipo]);
+        $pdf = PDF::loadView('compra.pdf', ['compras' => $compras, 'i' => $i, 'tipo' => $tipo, 'total' => $total]);
         return $pdf->stream();
     }
 
@@ -46,9 +47,10 @@ class CompraController extends Controller
     {
         $compras = Compra::where('estado', 'C')->get();
         $i = 0;
+        $total = 0;
         $tipo = "CERRADAS";
 
-        $pdf = PDF::loadView('compra.pdf', ['compras' => $compras, 'i' => $i, 'tipo' => $tipo]);
+        $pdf = PDF::loadView('compra.pdf', ['compras' => $compras, 'i' => $i, 'tipo' => $tipo, 'total' => $total]);
         return $pdf->stream();
     }
 
