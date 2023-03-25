@@ -50,7 +50,9 @@
                                         <form action="{{ route('insumos_producto.destroy',$insumo->pivot->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
+                                            @if(Auth::check() && Auth::user()->cargo == 'ADMIN')
                                             <button type="submit" class="btn btn-danger" style="max-height: 45px;">Eliminar</button>
+                                            @endif
                                         </form>
                                         @else
                                             <button class="btn btn-danger" style="max-height: 45px;" disabled>Eliminar</button>

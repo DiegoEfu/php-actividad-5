@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use Auth;
 use App\Producto;
 use Illuminate\Http\Request;
 use App\Insumo;
@@ -14,13 +15,11 @@ use App\InsumosProducto;
  */
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'ALMACENISTA')){
+            return redirect('/login');
+        }
         $productos = Producto::paginate();
 
         return view('producto.index', compact('productos'))
@@ -37,25 +36,17 @@ class ProductoController extends Controller
         return $pdf->stream();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'ALMACENISTA')){
+            return redirect('/login');
+        }
         $producto = new Producto();
 
         $insumos = Insumo::all();
         return view('producto.create', compact('producto','insumos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         request()->validate(Producto::$rules);
@@ -67,39 +58,26 @@ class ProductoController extends Controller
             ->with('success', 'Producto creado correctamente.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'ALMACENISTA')){
+            return redirect('/login');
+        }
         $producto = Producto::find($id);
 
         return view('producto.show', compact('producto'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN' && Auth::user()->cargo != 'ALMACENISTA')){
+            return redirect('/login');
+        }
         $producto = Producto::find($id);
 
         return view('producto.edit', compact('producto'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Producto $producto
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Producto $producto)
     {
         request()->validate(Producto::$rules);
@@ -110,13 +88,11 @@ class ProductoController extends Controller
             ->with('success', 'Producto editado correctamente.');
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
     public function destroy($id)
     {
+        if(!Auth::check() || (Auth::user()->cargo != 'ADMIN')){
+            return redirect('/login');
+        }
         $producto = Producto::find($id)->delete();
 
         return redirect()->route('productos.index')
