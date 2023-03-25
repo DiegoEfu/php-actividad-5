@@ -20,6 +20,9 @@
                                 <a href="{{ route('insumos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Registrar Nuevo') }}
                                 </a>
+                                <a target="_blank" href="{{ route('insumos.pdf') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                                    {{ __('PDF de Stocks Insumos') }}
+                                  </a>
                               </div>
                         </div>
                     </div>

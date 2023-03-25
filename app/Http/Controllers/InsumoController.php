@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Insumo;
 use Illuminate\Http\Request;
 
@@ -22,6 +23,16 @@ class InsumoController extends Controller
 
         return view('insumo.index', compact('insumos'))
             ->with('i', (request()->input('page', 1) - 1) * $insumos->perPage());
+    }
+
+    public function pdf()
+    {
+        $insumos = Insumo::orderBy('nombre')->get();
+
+        $i = 0;
+
+        $pdf = PDF::loadView('insumo.pdf', ['insumos' => $insumos, 'i' => $i]);
+        return $pdf->stream();
     }
 
     /**
