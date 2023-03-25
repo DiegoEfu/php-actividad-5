@@ -21,6 +21,9 @@
                                 <a href="{{ route('produccions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Registrar Nueva') }}
                                 </a>
+                                <a target="_blank" href="{{ route('produccions.pdf') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                                    {{ __('PDF de Producciones') }}
+                                  </a>
                               </div>
                         </div>
                     </div>

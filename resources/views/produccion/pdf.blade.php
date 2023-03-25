@@ -18,43 +18,41 @@
 </head>
 <body>
     <div class="d-flex justify-content-center flex-column">
-        <h1 class="text-center">REPORTE DE COMPRAS {{$tipo}}</h1>
-        @if($compras->count())
+        <h3 class="text-center">Químicos del Zulia</h3>
+        <h1 class="text-center">REPORTE DE PRODUCCIONES</h1>
+        @if($produccions->count())
         <table width="100%" border="3" class="table table-striped table-hover">
             <thead class="thead">
                 <tr>
                     <th>No</th>
+                    <th>Producto</th>
+                    <th>Fecha</th>
                     <th>Cantidad</th>
-                    <th>Referencia</th>
-                    <th>Insumo</th>
-                    <th>Proveedora</th>
-                    <th>Costo</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($compras as $compra)
+                {{$total = 0}}
+                @foreach ($produccions as $produccion)
                     <tr>
                         <td>{{ ++$i }}</td>
-                        <td>{{ $compra->cantidad }}</td>
-                        <td>{{ $compra->referencia }}</td>
-                        <td>{{ $compra->insumo->nombre }}</td>
-                        <td>{{ $compra->proveedora->razon_social }}</td>
-                        <td style="text-align: right;">{{($compra->cantidad)*($compra->insumo->precio)}}</td>
+						<td>{{ $produccion->producto->nombre }}</td>
+                        <td>{{ $produccion->created_at }}</td>
+                        <td  style="text-align: right;">{{ $produccion->cantidad }}</td>
+                        {{$total += $produccion->cantidad}}
                     </tr>
-                    {{$total += $compra->cantidad*($compra->insumo->precio)}}
                 @endforeach
             </tbody>
         </table>
-        <table border="3" width="100%">
+        <table width="100%" border="3" class="table table-striped table-hover">
             <tbody>
                 <tr class="totales">
-                    <td width="80%">TOTAL</td>
-                    <td width="20%" style="text-align: right;">{{$total}}</td>
+                    <td>TOTAL DE PRODUCTOS PRODUCIDOS</td>
+					<td style="text-align: right;">{{ $total }}</td>
                 </tr>
             </tbody>
         </table>
         @else
-        <p class="text-center">No hay compras abiertas.</p>
+        <p class="text-center">No hay producciones registradas.</p>
         @endif
         <br>
         Generado el: <b>{{Carbon\Carbon::now()->toDateTimeString()}}</b>. <br>

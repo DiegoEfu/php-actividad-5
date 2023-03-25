@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Illuminate\Support\Facades\DB;
 use App\Produccion;
 use App\Producto;
@@ -79,6 +80,15 @@ class ProduccionController extends Controller
 
         return redirect()->route('produccions.index')
             ->with('success', 'Producción registrada exitosamente.');
+    }
+
+    public function pdf()
+    {
+        $produccions = Produccion::orderBy('id', 'desc')->paginate();
+        $i = 0;
+
+        $pdf = PDF::loadView('produccion.pdf', ['produccions' => $produccions, 'i' => $i]);
+        return $pdf->stream();
     }
 
     /**
