@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Producto;
 use Illuminate\Http\Request;
 use App\Insumo;
@@ -24,6 +25,16 @@ class ProductoController extends Controller
 
         return view('producto.index', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function pdf()
+    {
+        $productos = Producto::orderBy('nombre')->get();
+
+        $i = 0;
+
+        $pdf = PDF::loadView('producto.pdf', ['productos' => $productos, 'i' => $i]);
+        return $pdf->stream();
     }
 
     /**
