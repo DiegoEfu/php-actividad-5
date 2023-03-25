@@ -84,7 +84,7 @@ class ProduccionController extends Controller
 
     public function pdf()
     {
-        $produccions = Produccion::orderBy('id', 'desc')->paginate();
+        $produccions = Produccion::orderBy('id', 'asc')->paginate();
         $i = 0;
 
         $pdf = PDF::loadView('produccion.pdf', ['produccions' => $produccions, 'i' => $i]);

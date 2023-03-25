@@ -36,14 +36,18 @@ Route::get('/home', [HomeController::class, 'index']);
 
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
-Route::resource('productos', ProductoController::class);
 Route::resource('proveedoras', ProveedoraController::class);
+Route::resource('insumos_producto', InsumosProductoController::class);
+
+Route::get('productos/pdf', [ProductoController::class, 'pdf']) -> name('productos.pdf');
+Route::resource('productos', ProductoController::class);
+
+Route::get('insumos/pdf', [InsumoController::class, 'pdf']) -> name('insumos.pdf');
 Route::resource('insumos', InsumoController::class);
 
 Route::get('libros/pdf_abiertas', [CompraController::class, 'pdf_abiertas']) -> name('compras.pdf_abiertas');
 Route::get('libros/pdf_cerradas', [CompraController::class, 'pdf_cerradas']) -> name('compras.pdf_cerradas');
 Route::resource('compras', CompraController::class);
-Route::resource('insumos_producto', InsumosProductoController::class);
 
 Route::get('produccions/pdf', [ProduccionController::class, 'pdf']) -> name('produccions.pdf');
 Route::resource('produccions', ProduccionController::class);
