@@ -60,7 +60,7 @@
                                                 <form action="{{ route('proveedoras.destroy',$proveedora->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('proveedoras.show',$proveedora->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('proveedoras.edit',$proveedora->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                                                    @if(Auth::check() && Auth::user->cargo == 'ADMIN')
+                                                    @if(Auth::check() && Auth::user()->cargo == 'ADMIN')
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
