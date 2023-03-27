@@ -7,13 +7,26 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Químicos del Zulia') }}</title>
+    <title>Químicos del Zulia</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            background: rgb(255,255,255);
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(84,57,148,1) 0%, rgba(28,125,203,1) 47%, rgba(93,175,166,1) 100%);
+        }
+
+        canvas{
+            background: white;
+            border-radius: 15px;
+        }
+    </style>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -32,7 +45,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if(auth()->user()->cargo == 'ALMACENISTA')
+                            <li class="nav-item"><a class="nav-link" href="{{route('produccions.index')}}">Producción</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('insumos.index')}}">Insumos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('productos.index')}}">Productos</a></li>
+                        @endif
 
+                        @if(auth()->user()->cargo == 'GESTOR DE COMPRAS')
+                            <li class="nav-item"><a class="nav-link" href="{{route('proveedoras.index')}}">Proveedoras</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('compras.index')}}">Compras</a></li>
+                        @endif
+
+                        @if(auth()->user()->cargo == 'ADMIN')
+                            <li class="nav-item"><a class="nav-link" href="{{route('produccions.index')}}">Producción</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('insumos.index')}}">Insumos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('productos.index')}}">Productos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('proveedoras.index')}}">Proveedoras</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('compras.index')}}">Compras</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -57,15 +87,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                    <a class="dropdown-item" href="{{ route('logout') }}">
+                                        {{ __('Cerrar Sesión') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
                                 </div>
                             </li>
                         @endguest

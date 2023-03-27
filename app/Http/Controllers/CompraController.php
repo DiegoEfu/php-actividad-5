@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use PDF;
+use Auth;
 
 use App\Compra;
 use App\Insumo;

@@ -29,7 +29,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login_post');
 
 Route::get('/register', function(){
     return view('auth.register');
-});
+})->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register_post');
 
 Route::get('/home', [HomeController::class, 'index']);

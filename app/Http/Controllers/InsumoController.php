@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use Auth;
 use App\Insumo;
 use Illuminate\Http\Request;
 
