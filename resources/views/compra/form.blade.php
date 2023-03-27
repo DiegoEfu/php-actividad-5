@@ -30,7 +30,8 @@
         </div>
 
     </div>
-    <div class="box-footer mt20">
+    <div class="box-footer mt20 d-flex justify-content-center">
+        <a class="btn btn-secondary" href="{{route('compras.index')}}">Regresar</a>
         <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
     </div>
 </div>

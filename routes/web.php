@@ -23,7 +23,7 @@ use App\Http\Controllers\InsumosProductoController;
 |
 */
 
-Route::get('/', [LoginController::class, 'show']);
+Route::get('/', [LoginController::class, 'show'])->name('login');
 Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'login'])->name('login_post');
 

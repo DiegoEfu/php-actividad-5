@@ -19,7 +19,8 @@
             {!! $errors->first('cantidad', '<div class="invalid-feedback">:message</div>') !!}
         </div>
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+    <div class="box-footer mt20 d-flex justify-content-center">
+        <a class="btn btn-secondary" href="{{route('produccions.index')}}">Regresar</a>
+        <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
     </div>
 </div>

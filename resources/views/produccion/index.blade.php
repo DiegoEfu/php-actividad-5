@@ -42,7 +42,7 @@
 
 										<th>Cantidad</th>
 										<th>Producto</th>
-                                        <td>Fecha</td>
+                                        <th>Fecha</th>
 
                                         <th></th>
                                     </tr>
