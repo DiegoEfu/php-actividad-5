@@ -27,6 +27,9 @@ Route::get('/', [LoginController::class, 'show'])->name('login');
 Route::get('/login', [LoginController::class, 'show']);
 Route::post('/login', [LoginController::class, 'login'])->name('login_post');
 
+Route::get('/recuperar', [LoginController::class, 'form_forget'])->name('recuperar');
+Route::post('/recuperar', [LoginController::class, 'forget'])->name('recuperar_email');
+
 Route::get('/register', function(){
     return view('auth.register');
 })->name('register');

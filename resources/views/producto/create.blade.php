@@ -45,6 +45,7 @@
                                 <small>Si desea colocar más insumos para producir este producto, debe añadirlos en el detalle.</small>
                             </div>
                             <div class="box-footer mt20">
+                                <a class="btn btn-secondary" href="{{route('productos.index')}}">Regresar</a>
                                 <button type="submit" class="btn btn-primary">{{ __('Enviar') }}</button>
                             </div>
                         </form>
