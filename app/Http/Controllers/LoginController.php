@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
+use PHPMailer\PHPMailer\PHPMailer;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -57,7 +57,27 @@ class LoginController extends Controller
         $user->password = $randomString;
         $user->save();
 
-        MailController::send($user->email, $randomString);
+        $mail = new PHPMailer(true);
+
+        $mail->IsSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPDebug = 0;
+        $mail->SMTPSecure = "ssl";
+        $mail->Host = "smtp.gmail.com";
+        $mail->Port = 465;
+        $mail->Username = "xxx@gmail.com";
+        $mail->Password = "xxx";
+        $mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ));
+
+        $mail->AddAddress($user->email, $user->name);
+        $mail->Subject = "Recuperacion de Clave";
+        $mail->Body = "Saludos,\n   su clave nueva es: " . $randomString;
+
+        try{
+            $mail->Send();
+        } catch(Exception $e){
+            echo "Fail - " . $mail->ErrorInfo;
+        }
 
         return redirect()->to('/login');
     }
